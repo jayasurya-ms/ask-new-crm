@@ -13,7 +13,6 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { setShowUpdateDialog } from "@/store/auth/versionSlice";
 import useAppLogout from "@/utils/logout";
 import { ArrowRight, ChevronsUpDown, Key, LogOut, User } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,20 +22,6 @@ export function NavUser({ user }) {
   const navigate = useNavigate();
   const { isMobile } = useSidebar();
   const user_position = useSelector((state) => state.auth.user_position);
-  const localVersion = useSelector((state) => state.auth?.version);
-  const serverVersion = useSelector((state) => state?.version?.version);
-  const sidebar = useSelector((state) => state?.ui?.sidebarOpen);
-  const showDialog = localVersion !== serverVersion ? true : false;
-  const dispatch = useDispatch();
-
-  const handleOpenDialog = () => {
-    dispatch(
-      setShowUpdateDialog({
-        showUpdateDialog: true,
-        version: serverVersion,
-      }),
-    );
-  };
   const handleLogout = useAppLogout();
 
   const splitUser = user.name;
@@ -70,26 +55,7 @@ export function NavUser({ user }) {
                 <ChevronsUpDown className="ml-auto size-4" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
-            <SidebarMenuButton
-              size="lg"
-              className={`data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground p-0 cursor-text data-[state=open]: ${
-                sidebar ? "text-red-950" : "hidden"
-              }`}
-            >
-              <div className="rounded-lg bg-sidebar-primary text-sidebar-primary-foreground px-4 py-2 w-full  h-10 ">
-                <div className="flex justify-between items-center h-full w-full text-xs leading-tight text-center">
-                  <span className="flex items-center gap-1 font-semibold">
-                    <span>
-                      <span className="text-[10px]">V </span>
-                      {localVersion}
-                    </span>
-                  </span>
-                  <span className="flex items-center gap-1 font-semibold">
-                    Updated on :18/03/2026
-                  </span>
-                </div>
-              </div>
-            </SidebarMenuButton>
+
             <DropdownMenuContent
               className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
               side={isMobile ? "bottom" : "right"}
@@ -137,3 +103,4 @@ export function NavUser({ user }) {
     </>
   );
 }
+

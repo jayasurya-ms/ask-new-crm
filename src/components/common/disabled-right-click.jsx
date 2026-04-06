@@ -53,3 +53,4 @@ const DisabledRightClick = () => {
 };
 
 export default DisabledRightClick;
+

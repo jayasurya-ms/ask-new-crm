@@ -133,3 +133,4 @@ const GalleryCreate = () => {
 };
 
 export default GalleryCreate;
+

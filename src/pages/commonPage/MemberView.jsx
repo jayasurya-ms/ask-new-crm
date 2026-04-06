@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import apiClient from "@/api/apiClient";
+import { IMAGE_BASE_URL, DOC_BASE_URL } from "@/config/base-url";
 import { WEB_API } from "@/constants/apiConstants";
 import { Loader2 } from "lucide-react";
 
@@ -55,24 +56,30 @@ const MemberView = () => {
   const SectionHeader = ({ icon: Icon, title, badge }) => (
     <div className="flex items-center justify-between mb-4 mt-2">
       <div className="flex items-center gap-3">
-        <div className="p-2 bg-pink-50 rounded-lg">
-          <Icon className="w-5 h-5 text-pink-700" />
+        <div className="p-2 bg-primary/10 rounded-lg text-primary">
+          <Icon className="w-5 h-5" />
         </div>
+
         <h3 className="text-xl font-bold text-slate-900">{title}</h3>
       </div>
-      {badge && <Badge variant="secondary" className="bg-pink-100 text-pink-700 hover:bg-pink-100 border-none">{badge}</Badge>}
+      {badge && <Badge variant="secondary" className="bg-primary/20 text-primary hover:bg-primary/20 border-none">{badge}</Badge>}
     </div>
   );
 
   if (loading) {
     return (
       <div className="flex h-[80vh] items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-pink-700" />
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
   }
 
   if (!profile) return <div className="p-8 text-center">Member not found.</div>;
+
+  const profileImage = profile.agrawal_image 
+    ? `${IMAGE_BASE_URL}${profile.agrawal_image}` 
+    : "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
+
 
   return (
     <div className="container mx-auto p-4 md:p-8 space-y-8 pb-20 mt-6">
@@ -80,7 +87,7 @@ const MemberView = () => {
         <div className="flex flex-col md:flex-row items-center gap-6">
           <div className="w-24 h-24 rounded-2xl border-4 border-white shadow-lg overflow-hidden bg-slate-100 flex-shrink-0">
             <img 
-              src={profile.agrawal_image ? `https://agrawalsamaj.co/crmapi/public/uploads/${profile.agrawal_image}` : "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"} 
+              src={profileImage} 
               alt="Profile" 
               className="w-full h-full object-cover"
             />
@@ -97,9 +104,10 @@ const MemberView = () => {
             <Button onClick={handleBack} variant="outline" className="flex gap-2 rounded-xl h-11 px-6 transition-all active:scale-95 border-slate-200">
                <FiArrowLeft /> Back
             </Button>
-            <Button onClick={() => window.print()} className="bg-pink-700 hover:bg-pink-800 text-white flex gap-2 rounded-xl h-11 px-6 shadow-lg shadow-pink-100 transition-all active:scale-95">
+            <Button onClick={() => window.print()} className="bg-primary hover:bg-primary/90 text-white flex gap-2 rounded-xl h-11 px-6 shadow-lg shadow-pink-100 transition-all active:scale-95">
                 <FiPrinter /> Print Profile
             </Button>
+
         </div>
       </div>
 
@@ -184,8 +192,9 @@ const MemberView = () => {
             <Card className="border-none shadow-md bg-white overflow-hidden">
                 <CardHeader className="bg-slate-50/50 border-b">
                     <CardTitle className="text-lg flex items-center gap-2">
-                        <FiUsers className="text-pink-700" /> Family Members
+                        <FiUsers className="text-primary" /> Family Members
                     </CardTitle>
+
                 </CardHeader>
                 <CardContent className="p-0">
                     <div className="overflow-x-auto">
@@ -222,15 +231,16 @@ const MemberView = () => {
             <div className="space-y-2 mt-4">
                 <InfoItem icon={FiHeart} label="Marital Status" value={profile.married} />
                 {profile.married === "Yes" && (
-                    <div className="bg-pink-50/50 p-4 rounded-2xl border border-pink-100 space-y-2 mt-2">
-                        <InfoItem icon={FiCalendar} label="Anniversary" value={profile.f_mannidate ? moment(profile.f_mannidate).format("DD MMM YYYY") : null} color="text-pink-600" />
-                        <InfoItem icon={FiUser} label="Spouse Name" value={profile.spouse_name} color="text-pink-600" />
-                        <InfoItem icon={FiPhone} label="Spouse Mobile" value={profile.spouse_mobile} color="text-pink-600" />
-                        <InfoItem icon={FiCalendar} label="Spouse DOB" value={profile.spouse_dob ? moment(profile.spouse_dob).format("DD-MM-YYYY") : null} color="text-pink-600" />
-                        <InfoItem icon={FiHeart} label="Spouse Blood" value={profile.spouse_blood_group} color="text-pink-600" />
-                        <InfoItem icon={FiBook} label="Spouse Qualification" value={profile.spouse_qualification} color="text-pink-600" />
+                    <div className="bg-primary/5 p-4 rounded-2xl border border-primary/10 space-y-2 mt-2">
+                        <InfoItem icon={FiCalendar} label="Anniversary" value={profile.f_mannidate ? moment(profile.f_mannidate).format("DD MMM YYYY") : null} color="text-primary" />
+                        <InfoItem icon={FiUser} label="Spouse Name" value={profile.spouse_name} color="text-primary" />
+                        <InfoItem icon={FiPhone} label="Spouse Mobile" value={profile.spouse_mobile} color="text-primary" />
+                        <InfoItem icon={FiCalendar} label="Spouse DOB" value={profile.spouse_dob ? moment(profile.spouse_dob).format("DD-MM-YYYY") : null} color="text-primary" />
+                        <InfoItem icon={FiHeart} label="Spouse Blood" value={profile.spouse_blood_group} color="text-primary" />
+                        <InfoItem icon={FiBook} label="Spouse Qualification" value={profile.spouse_qualification} color="text-primary" />
                     </div>
                 )}
+
             </div>
 
             <div className="mt-8 pt-8 border-t border-slate-100">
@@ -254,14 +264,27 @@ const MemberView = () => {
 
             <div className="mt-8 pt-8 border-t border-slate-100">
                 <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Identification</h4>
-                <div className="flex items-center gap-4 p-4 border rounded-2xl border-dashed border-slate-200 bg-slate-50/50">
-                    <div className="p-3 bg-white rounded-xl shadow-sm">
-                        <FiBook className="text-pink-700" />
+                <div className="space-y-3">
+                    <div className="flex items-center gap-4 p-4 border rounded-2xl border-dashed border-slate-200 bg-slate-50/50 hover:bg-slate-50 transition-colors">
+                        <div className="p-3 bg-white rounded-xl shadow-sm">
+                            <FiBook className="text-primary" />
+                        </div>
+
+                        <div>
+                            <p className="text-xs text-slate-500 font-bold uppercase">{profile.user_proof_identification || 'ID TYPE'}</p>
+                            <p className="text-sm font-black text-slate-900">{profile.user_pan_no || 'NO DATA'}</p>
+                        </div>
                     </div>
-                    <div>
-                        <p className="text-xs text-slate-500 font-bold uppercase">{profile.user_proof_identification || 'ID TYPE'}</p>
-                        <p className="text-sm font-black text-slate-900">{profile.user_pan_no || 'NO DATA'}</p>
-                    </div>
+                    {profile.user_proof_doc && (
+                        <a 
+                            href={`${DOC_BASE_URL}${profile.user_proof_doc}`} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 p-3 w-full border border-pink-100 bg-pink-50/30 text-primary rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-pink-50 transition-all border-dashed"
+                        >
+                            <FiPrinter className="w-3 h-3" /> View Identification Document
+                        </a>
+                    )}
                 </div>
             </div>
           </Card>
@@ -272,3 +295,4 @@ const MemberView = () => {
 };
 
 export default MemberView;
+

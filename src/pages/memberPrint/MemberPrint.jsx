@@ -6,6 +6,7 @@ import ReactToPrint from "react-to-print";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import apiClient from "@/api/apiClient";
+import { IMAGE_BASE_URL } from "@/config/base-url";
 import { WEB_API } from "@/constants/apiConstants";
 import { Loader2 } from "lucide-react";
 import "./style.css";
@@ -36,12 +37,17 @@ const MemberPrint = () => {
   if (loading) {
     return (
       <div className="flex h-[60vh] items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-pink-700" />
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
   }
 
   if (!profile) return <div className="p-8 text-center text-slate-500 font-bold">Member not found.</div>;
+
+  const profileImage = profile.agrawal_image 
+    ? `${IMAGE_BASE_URL}${profile.agrawal_image}` 
+    : null;
+
 
   return (
     <div className="container mx-auto p-4 md:p-8 space-y-6 pb-20 mt-6 no-print">
@@ -61,7 +67,7 @@ const MemberPrint = () => {
           </Button>
           <ReactToPrint
             trigger={() => (
-              <Button className="bg-pink-700 hover:bg-pink-800 text-white rounded-xl shadow-lg shadow-pink-100 px-8">
+              <Button className="bg-primary hover:bg-primary/90 text-white rounded-xl shadow-lg shadow-pink-100 px-8">
                 <FiPrinter className="mr-2" /> Print Document
               </Button>
             )}
@@ -88,9 +94,9 @@ const MemberPrint = () => {
             <div className="flex gap-8 mb-8 relative min-h-[160px]">
                 {/* Profile Image Column */}
                 <div className="w-32 h-40 border-4 border-slate-100 rounded-lg overflow-hidden flex-shrink-0 bg-slate-50 flex items-center justify-center">
-                    {profile.agrawal_image ? (
+                    {profileImage ? (
                         <img 
-                            src={`https://agrawalsamaj.co/crmapi/public/uploads/${profile.agrawal_image}`} 
+                            src={profileImage} 
                             alt="Profile" 
                             className="w-full h-full object-cover"
                         />
@@ -139,7 +145,7 @@ const MemberPrint = () => {
                     <h3 className="text-xs font-black uppercase tracking-widest text-slate-400 border-b pb-2">Contact & Address Information</h3>
                     <div className="grid grid-cols-2 gap-8">
                         <div className="space-y-2 p-4 border border-slate-100 rounded-xl bg-slate-50/20">
-                            <h4 className="text-[10px] font-black uppercase text-pink-700">Residential Address</h4>
+                            <h4 className="text-[10px] font-black uppercase text-primary">Residential Address</h4>
                             <p className="text-sm font-medium leading-relaxed">
                                 {profile.residential_add}<br />
                                 {profile.residential_landmark ? profile.residential_landmark + ", " : ""}{profile.residential_city}<br />
@@ -199,3 +205,4 @@ const InfoRow = ({ label, value }) => (
 );
 
 export default MemberPrint;
+

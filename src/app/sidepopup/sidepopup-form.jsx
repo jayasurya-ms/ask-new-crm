@@ -197,3 +197,4 @@ const SidePopUpForm = ({ isOpen, onClose, popupId }) => {
 };
 
 export default SidePopUpForm;
+

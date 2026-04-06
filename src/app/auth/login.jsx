@@ -222,9 +222,10 @@ const Login = () => {
 
           <footer className="text-center text-sm text-slate-500">
             Not a member?{" "}
-            <Link to="/register" className="font-semibold text-slate-900 hover:underline">
+            <Link to="/register" className="font-semibold text-primary hover:underline">
               Sign Up Now
             </Link>
+
           </footer>
         </div>
       </div>
@@ -233,3 +234,4 @@ const Login = () => {
 };
 
 export default Login;
+

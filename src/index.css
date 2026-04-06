@@ -5,34 +5,36 @@
 @layer base {
   :root {
     --background: 0 0% 98%;
-    --foreground: 90 40% 8%;
+    --foreground: 340 40% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 90 40% 8%;
+    --card-foreground: 340 40% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 90 40% 8%;
-    --primary: 157 60% 30%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 101 35% 17%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 90 15% 95%;
-    --muted-foreground: 90 8% 45%;
-    --accent: 142 44% 26%;
-    --accent-foreground: 0 0% 98%;
+    --popover-foreground: 340 40% 10%;
+    --primary: 340 75% 42%; /* pink-700 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 351 95% 71%; /* rose-400 */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 340 15% 96%;
+    --muted-foreground: 340 10% 45%;
+    --accent: 351 95% 71%; /* rose-400 */
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 90 15% 88%;
-    --input: 90 15% 88%;
-    --ring: 157 60% 30%;
+    --border: 340 15% 90%;
+    --input: 340 15% 90%;
+    --ring: 340 75% 42%;
+
     --radius: 0.75rem;
 
-    --sidebar-background: 90 30% 12%; /* Lightened from 8% */
+    --sidebar-background: 340 30% 12%; 
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 157 60% 30%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 101 35% 20%; /* Lightened from 17% */
+    --sidebar-primary: 340 75% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 351 35% 20%;
     --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 90 20% 20%; /* Lightened from 15% */
-    --sidebar-ring: 157 60% 30%;
+    --sidebar-border: 340 20% 20%;
+    --sidebar-ring: 340 75% 42%;
+
 
     --team-color: #3b82f6; /* brand blue */
     --label-color: #ffffff; /* brand blue */
@@ -44,41 +46,43 @@
     --color-border: hsl(217, 91%, 60%); /* border-blue-400 */
     --color-border-dark: hsl(215, 28%, 25%); /* dark:border-blue-800 */
 
-    --login-gradient: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
-    --login-blob-1: #93c5fd; /* blue-300 */
-    --login-blob-2: #c7d2fe; /* indigo-200 */
-    --login-blob-3: #ddd6fe; /* purple-200 */
+    --login-gradient: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+    --login-blob-1: #fda4af; /* rose-300 */
+    --login-blob-2: #fecdd3; /* rose-200 */
+    --login-blob-3: #f9a8d4; /* pink-300 */
+
   }
 
   .dark {
-    --background: 90 25% 15%; /* Lightened from 8% */
+    --background: 340 25% 15%;
     --foreground: 0 0% 95%;
-    --card: 101 30% 22%; /* Lightened from 17% */
+    --card: 351 30% 22%;
     --card-foreground: 0 0% 95%;
-    --popover: 101 30% 22%; /* Lightened from 17% */
+    --popover: 351 30% 22%;
     --popover-foreground: 0 0% 95%;
-    --primary: 157 60% 30%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 142 44% 26%;
+    --primary: 340 75% 42%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 351 95% 71%;
     --secondary-foreground: 0 0% 95%;
-    --muted: 101 20% 25%; /* Lightened from 20% */
-    --muted-foreground: 0 0% 70%; /* Lightened from 65% */
-    --accent: 142 44% 26%;
+    --muted: 351 20% 25%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 351 95% 71%;
     --accent-foreground: 0 0% 95%;
     --destructive: 0 75% 55%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 101 20% 25%; /* Lightened from 20% */
-    --input: 101 20% 25%; /* Lightened from 20% */
-    --ring: 157 60% 30%;
-    --sidebar-background: 90 25% 15%; /* Lightened from 8% */
-    --sidebar-foreground: 0 0% 92%; /* Lightened from 90% */
-    --sidebar-primary: 157 60% 30%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 101 30% 22%; /* Lightened from 17% */
-    --sidebar-accent-foreground: 0 0% 92%; /* Lightened from 90% */
-    --sidebar-border: 101 20% 25%; /* Lightened from 20% */
-    --sidebar-ring: 157 60% 30%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 351 20% 25%;
+    --input: 351 20% 25%;
+    --ring: 340 75% 42%;
+    --sidebar-background: 340 25% 15%;
+    --sidebar-foreground: 0 0% 92%;
+    --sidebar-primary: 340 75% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 351 30% 22%;
+    --sidebar-accent-foreground: 0 0% 92%;
+    --sidebar-border: 351 20% 25%;
+    --sidebar-ring: 340 75% 42%;
   }
+
 
   /* === Yellow Theme === */
   .theme-yellow {
@@ -383,3 +387,13 @@
 svg:focus {
   outline: none;
 }
+
+@layer utilities {
+  .bg-primary-gradient {
+    @apply bg-gradient-to-r from-pink-700 to-rose-400;
+  }
+  .text-primary-gradient {
+    @apply bg-gradient-to-r from-pink-700 to-rose-400 bg-clip-text text-transparent;
+  }
+}
+

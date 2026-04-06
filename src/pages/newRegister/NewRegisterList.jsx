@@ -83,7 +83,7 @@ const NewRegisterList = () => {
             variant="ghost"
             size="icon"
             onClick={() => handleView(row.original.id)}
-            className="hover:text-pink-700 hover:bg-pink-50"
+            className="hover:text-primary hover:bg-pink-50"
             title="View"
           >
             <FiEye className="h-4 w-4" />
@@ -92,7 +92,7 @@ const NewRegisterList = () => {
             variant="ghost"
             size="icon"
             onClick={() => handleEdit(row.original.id)}
-            className="hover:text-pink-700 hover:bg-pink-50"
+            className="hover:text-primary hover:bg-pink-50"
             title="Edit"
           >
             <FiEdit className="h-4 w-4" />
@@ -106,7 +106,7 @@ const NewRegisterList = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="hover:text-pink-700 hover:bg-pink-50"
+                className="hover:text-primary hover:bg-pink-50"
                 title="Print"
               >
                 <FiPrinter className="h-4 w-4" />
@@ -121,7 +121,7 @@ const NewRegisterList = () => {
   if (loading) {
     return (
       <div className="flex h-[60vh] items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-pink-700" />
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -131,7 +131,7 @@ const NewRegisterList = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 animate-in fade-in slide-in-from-top-4 duration-500">
         <div className="flex items-center gap-4">
           <div className="p-3 bg-pink-50 rounded-xl">
-            <FiUserPlus className="w-6 h-6 text-pink-700" />
+            <FiUserPlus className="w-6 h-6 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-slate-900">New Registrations</h1>
@@ -152,3 +152,4 @@ const NewRegisterList = () => {
 };
 
 export default NewRegisterList;
+

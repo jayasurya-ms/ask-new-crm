@@ -228,3 +228,4 @@ const GalleryEdit = ({ galleryId }) => {
 };
 
 export default GalleryEdit;
+

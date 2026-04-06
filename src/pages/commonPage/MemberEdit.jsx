@@ -14,6 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { WEB_API } from "@/constants/apiConstants";
 import apiClient from "@/api/apiClient";
+import { IMAGE_BASE_URL, DOC_BASE_URL } from "@/config/base-url";
 import { Loader2 } from "lucide-react";
 
 const genderOptions = [
@@ -121,10 +122,24 @@ const MemberEdit = () => {
   if (loading) {
     return (
       <div className="flex h-[80vh] items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-pink-700" />
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
   }
+
+  const profileImage = selectedFile 
+    ? URL.createObjectURL(selectedFile) 
+    : formData.agrawal_image 
+      ? `${IMAGE_BASE_URL}${formData.agrawal_image}` 
+      : "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
+
+  const docPreviewUrl = selectedFiledoc 
+    ? URL.createObjectURL(selectedFiledoc) 
+    : formData.user_proof_doc 
+      ? `${DOC_BASE_URL}${formData.user_proof_doc}` 
+      : null;
+
+
 
   return (
     <div className="container mx-auto p-4 md:p-8 space-y-8 pb-20 mt-6 animate-in fade-in duration-500">
@@ -133,7 +148,7 @@ const MemberEdit = () => {
           <div className="flex items-center gap-3">
               <h1 className="text-3xl font-bold tracking-tight text-slate-900">Edit Profile</h1>
               <div className="flex gap-2">
-                <span className="bg-pink-100 text-pink-700 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest border border-pink-200">MID: {formData.user_mid || 'N/A'}</span>
+                <span className="bg-primary/10 text-primary text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest border border-primary/20">MID: {formData.user_mid || 'N/A'}</span>
                 <span className="bg-blue-50 text-blue-700 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest border border-blue-100">Admin Mode</span>
               </div>
           </div>
@@ -143,7 +158,7 @@ const MemberEdit = () => {
           <Button onClick={() => navigate(-1)} variant="outline" className="flex-1 md:flex-none gap-2 rounded-xl border-slate-200 h-11 px-6">
             <FiArrowLeft /> Back
           </Button>
-          <Button onClick={handleUpdate} disabled={updating} className="flex-1 md:flex-none gap-2 rounded-xl bg-pink-700 hover:bg-pink-800 text-white h-11 px-8 shadow-lg shadow-pink-100 transition-all active:scale-95">
+          <Button onClick={handleUpdate} disabled={updating} className="flex-1 md:flex-none gap-2 rounded-xl bg-primary hover:bg-primary/90 text-white h-11 px-8 shadow-lg shadow-pink-100 transition-all active:scale-95">
             {updating ? <Loader2 className="h-4 w-4 animate-spin" /> : <FiSave />} Update All
           </Button>
         </div>
@@ -157,7 +172,7 @@ const MemberEdit = () => {
                  <div className="p-4 mb-2 border-b border-slate-50 text-center">
                     <div className="w-24 h-24 rounded-2xl mx-auto bg-slate-100 border-2 border-slate-50 overflow-hidden mb-3 shadow-inner relative group">
                         <img 
-                          src={selectedFile ? URL.createObjectURL(selectedFile) : `https://agrawalsamaj.co/crmapi/public/uploads/${formData.agrawal_image}`} 
+                          src={profileImage} 
                           className="w-full h-full object-cover" 
                           alt="Profile" 
                         />
@@ -173,15 +188,30 @@ const MemberEdit = () => {
                  <div className="space-y-4 p-4 text-xs font-semibold text-slate-500 uppercase tracking-widest px-6">
                     Documentation
                  </div>
-                 <div className="px-4 pb-4">
+                  <div className="px-4 pb-4">
                     <Label className="block text-xs mb-2 text-slate-400">ID Proof Document</Label>
-                    <div className="flex items-center gap-2 bg-slate-50 p-2 rounded-lg border border-dashed border-slate-200">
-                        <FiFileText className="text-blue-600" />
-                        <span className="text-[10px] text-slate-500 truncate flex-1">{formData.user_proof_doc || 'No document'}</span>
-                        <Label htmlFor="member_doc" className="text-blue-700 hover:text-blue-800 cursor-pointer text-[10px] whitespace-nowrap">Change</Label>
-                        <input id="member_doc" type="file" className="hidden" onChange={(e) => setSelectedFileDoc(e.target.files[0])} />
+                    <div className="space-y-3">
+                        {docPreviewUrl && (
+                            <div className="relative group mx-auto w-full h-24 rounded-xl overflow-hidden border bg-slate-50">
+                                <img src={docPreviewUrl} alt="ID Proof" className="w-full h-full object-cover" />
+                                <a 
+                                    href={docPreviewUrl} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-white text-[10px] font-bold"
+                                >
+                                    VIEW DOCUMENT
+                                </a>
+                            </div>
+                        )}
+                        <div className="flex items-center gap-2 bg-slate-50 p-2 rounded-lg border border-dashed border-slate-200">
+                            <FiFileText className="text-blue-600" />
+                            <span className="text-[10px] text-slate-500 truncate flex-1">{selectedFiledoc ? selectedFiledoc.name : formData.user_proof_doc || 'No document'}</span>
+                            <Label htmlFor="member_doc" className="text-blue-700 hover:text-blue-800 cursor-pointer text-[10px] whitespace-nowrap">Change</Label>
+                            <input id="member_doc" type="file" className="hidden" onChange={(e) => setSelectedFileDoc(e.target.files[0])} />
+                        </div>
                     </div>
-                 </div>
+                  </div>
               </CardContent>
            </Card>
         </div>
@@ -190,12 +220,13 @@ const MemberEdit = () => {
         <div className="lg:col-span-3 space-y-8">
           <Tabs defaultValue="personal" className="w-full">
             <TabsList className="bg-white border p-1 rounded-2xl w-full justify-start overflow-x-auto shadow-sm mb-6 h-14">
-              <TabsTrigger value="personal" className="rounded-xl px-6 data-[state=active]:bg-pink-50 data-[state=active]:text-pink-700 gap-2"><FiUser /> Personal</TabsTrigger>
-              <TabsTrigger value="family" className="rounded-xl px-6 data-[state=active]:bg-pink-50 data-[state=active]:text-pink-700 gap-2"><FiUsers /> Family</TabsTrigger>
-              <TabsTrigger value="address" className="rounded-xl px-6 data-[state=active]:bg-pink-50 data-[state=active]:text-pink-700 gap-2"><FiHome /> Address</TabsTrigger>
-              <TabsTrigger value="professional" className="rounded-xl px-6 data-[state=active]:bg-pink-50 data-[state=active]:text-pink-700 gap-2"><FiBriefcase /> Professional</TabsTrigger>
-              <TabsTrigger value="community" className="rounded-xl px-6 data-[state=active]:bg-pink-50 data-[state=active]:text-pink-700 gap-2"><FiAward /> Community</TabsTrigger>
+              <TabsTrigger value="personal" className="rounded-xl px-6 data-[state=active]:bg-primary/5 data-[state=active]:text-primary gap-2"><FiUser /> Personal</TabsTrigger>
+              <TabsTrigger value="family" className="rounded-xl px-6 data-[state=active]:bg-primary/5 data-[state=active]:text-primary gap-2"><FiUsers /> Family</TabsTrigger>
+              <TabsTrigger value="address" className="rounded-xl px-6 data-[state=active]:bg-primary/5 data-[state=active]:text-primary gap-2"><FiHome /> Address</TabsTrigger>
+              <TabsTrigger value="professional" className="rounded-xl px-6 data-[state=active]:bg-primary/5 data-[state=active]:text-primary gap-2"><FiBriefcase /> Professional</TabsTrigger>
+              <TabsTrigger value="community" className="rounded-xl px-6 data-[state=active]:bg-primary/5 data-[state=active]:text-primary gap-2"><FiAward /> Community</TabsTrigger>
             </TabsList>
+
 
             <TabsContent value="personal" className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
               <Card className="border-none shadow-md">
@@ -277,7 +308,7 @@ const MemberEdit = () => {
 
             <TabsContent value="address" className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
                <Card className="border-none shadow-md">
-                <CardHeader className="border-b pb-4"><CardTitle className="text-lg flex items-center gap-2"><FiHome className="text-pink-700" /> Residential Address</CardTitle></CardHeader>
+                <CardHeader className="border-b pb-4"><CardTitle className="text-lg flex items-center gap-2"><FiHome className="text-primary" /> Residential Address</CardTitle></CardHeader>
                 <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
                   <div className="space-y-2 md:col-span-2"><Label>Address</Label><Input name="residential_add" value={formData.residential_add} onChange={onInputChange} /></div>
                   <div className="space-y-2"><Label>Landmark</Label><Input name="residential_landmark" value={formData.residential_landmark} onChange={onInputChange} /></div>
@@ -313,7 +344,7 @@ const MemberEdit = () => {
 
             <TabsContent value="community" className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
                <Card className="border-none shadow-md">
-                <CardHeader className="border-b pb-4"><CardTitle className="text-lg flex items-center gap-2"><FiAward className="text-pink-700" /> Membership & Community</CardTitle></CardHeader>
+                <CardHeader className="border-b pb-4"><CardTitle className="text-lg flex items-center gap-2"><FiAward className="text-primary" /> Membership & Community</CardTitle></CardHeader>
                 <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-6">
                   <div className="space-y-2"><Label>Introduced By</Label><Input name="f_mintroby" value={formData.f_mintroby} onChange={onInputChange} /></div>
                   <div className="space-y-2"><Label>Introducer MID</Label><Input name="f_mmemno" value={formData.f_mmemno} onChange={onInputChange} /></div>
@@ -350,3 +381,4 @@ const MemberEdit = () => {
 };
 
 export default MemberEdit;
+

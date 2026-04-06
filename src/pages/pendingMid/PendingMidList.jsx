@@ -78,7 +78,7 @@ const PendingMidList = () => {
               size="icon"
               onClick={() => navigate(`/new-mid-assign/${id}`)}
               title="Assign MID"
-              className="hover:text-pink-700"
+              className="hover:text-primary"
             >
               <FiEdit className="h-4 w-4" />
             </Button>
@@ -93,7 +93,7 @@ const PendingMidList = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 animate-in fade-in slide-in-from-top-4 duration-500">
         <div className="flex items-center gap-4">
           <div className="p-3 bg-pink-50 rounded-xl">
-            <FiClock className="w-6 h-6 text-pink-700" />
+            <FiClock className="w-6 h-6 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-slate-900">Pending MID List</h1>
@@ -105,7 +105,7 @@ const PendingMidList = () => {
       <div className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden">
         {loading ? (
           <div className="flex h-64 items-center justify-center">
-            <Loader2 className="h-8 w-8 animate-spin text-pink-700" />
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
           </div>
         ) : (
           <DataTable
@@ -120,3 +120,4 @@ const PendingMidList = () => {
 };
 
 export default PendingMidList;
+

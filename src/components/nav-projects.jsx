@@ -57,3 +57,4 @@ export function NavProjects({ projects }) {
     </SidebarGroup>
   );
 }
+

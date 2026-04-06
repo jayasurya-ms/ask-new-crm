@@ -210,3 +210,4 @@ export function AppSidebar({ ...props }) {
 }
 
 export { NAVIGATION_CONFIG, USER_ROLE_PERMISSIONS };
+

@@ -114,3 +114,4 @@ const SamajList = () => {
 };
 
 export default SamajList;
+

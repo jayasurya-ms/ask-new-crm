@@ -130,3 +130,4 @@ const Profile = ({ open, setOpen }) => {
 };
 
 export default Profile;
+

@@ -4,7 +4,6 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { encryptTransform } from "redux-persist-transform-encrypt";
 import authReducer from "./auth/authSlice";
-import versionReducer from "./auth/versionSlice";
 import companyReducer from "./auth/companySlice";
 import uiReducer from "./ui/uiSlice";
 
@@ -28,13 +27,12 @@ if (!secretKey) {
 const persistConfig = {
   key: "root-chair",
   storage,
-  whitelist: ["auth", "company", "version", "ui"],
+  whitelist: ["auth", "company", "ui"],
   transforms,
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  version: versionReducer,
   company: companyReducer,
   ui: uiReducer,
 });

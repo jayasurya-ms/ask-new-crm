@@ -1,4 +1,4 @@
-import BASE_URL from "@/config/base-url";
+import { BASE_URL } from "@/config/base-url";
 import { store } from "@/store/store";
 import useAppLogout from "@/utils/logout";
 import axios from "axios";

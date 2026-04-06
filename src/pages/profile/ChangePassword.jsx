@@ -66,7 +66,7 @@ const ChangePassword = () => {
   return (
     <div className="container mx-auto p-4 md:p-8 flex justify-center items-center h-[calc(100vh-10rem)]">
       <Card className="w-full max-w-lg border-none shadow-xl bg-white overflow-hidden">
-        <CardHeader className="bg-gradient-to-r from-pink-700 to-rose-400 text-white p-8">
+        <CardHeader className="bg-primary-gradient text-white p-8">
           <CardTitle className="text-2xl font-bold flex items-center gap-2">
             <FiLock /> Change Password
           </CardTitle>
@@ -151,7 +151,7 @@ const ChangePassword = () => {
           <Button
             form="changePassword"
             type="submit"
-            className="w-full h-14 bg-pink-700 hover:bg-pink-800 text-white font-bold text-lg rounded-xl shadow-lg shadow-pink-200 transition-all active:scale-95 flex items-center justify-center gap-2"
+            className="w-full h-14 bg-primary hover:bg-primary/90 text-white font-bold text-lg rounded-xl shadow-lg shadow-pink-200 transition-all active:scale-95 flex items-center justify-center gap-2"
             disabled={loading}
           >
             {loading ? (
@@ -179,3 +179,4 @@ const ChangePassword = () => {
 };
 
 export default ChangePassword;
+

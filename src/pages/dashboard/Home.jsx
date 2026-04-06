@@ -46,23 +46,26 @@ const Home = () => {
 
   return (
     <div className="container mx-auto p-4 md:p-8 space-y-12 pb-20 mt-6 animate-in fade-in duration-700">
-      <div className="relative overflow-hidden bg-gradient-to-br from-pink-700 via-pink-800 to-indigo-900 text-white rounded-[2.5rem] p-8 md:p-14 shadow-2xl shadow-pink-200">
+      <div className="relative overflow-hidden bg-primary-gradient text-white rounded-[2.5rem] p-8 md:p-14 shadow-2xl shadow-pink-100">
+
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-indigo-500/20 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
         
         <div className="relative z-10 max-w-2xl space-y-6">
             <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-tight">
-                Welcome to Agarwal Samaj <span className="text-pink-300">CRM Portal</span>
+                Welcome to Agarwal Samaj <span className="text-white/80">CRM Portal</span>
             </h1>
-            <p className="text-lg md:text-xl text-pink-100 font-medium opacity-90 leading-relaxed">
+            <p className="text-lg md:text-xl text-white/90 font-medium leading-relaxed">
                 Hello, {userName}. Efficiently manage memberships, track registrations, and handle community communications from your unified dashboard.
             </p>
+
             <div className="flex flex-wrap gap-4 pt-4">
                 <Link to="/profile">
-                    <Button className="bg-white text-pink-700 hover:bg-pink-50 rounded-2xl h-14 px-8 font-black text-lg transition-transform active:scale-95 shadow-xl">
+                    <Button className="bg-white text-primary hover:bg-slate-50 rounded-2xl h-14 px-8 font-black text-lg transition-transform active:scale-95 shadow-xl">
                         Update My Profile
                     </Button>
                 </Link>
+
                 <Link to="/download">
                     <Button variant="outline" className="text-white border-white/30 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-2xl h-14 px-8 font-bold text-lg">
                         <FiDownload className="mr-2" /> Download Reports
@@ -90,9 +93,10 @@ const Home = () => {
                     </CardHeader>
                     <CardContent className="px-8 pb-8 flex items-center justify-between">
                         <span className="text-xs font-black uppercase tracking-widest text-slate-400 bg-slate-50 px-3 py-1.5 rounded-full">{metric.stats} Module</span>
-                        <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-pink-700 group-hover:text-white transition-colors">
+                        <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-primary group-hover:text-white transition-colors">
                             <FiArrowLeft className="rotate-180" />
                         </div>
+
                     </CardContent>
                 </Card>
             </Link>
@@ -113,3 +117,4 @@ const Home = () => {
 };
 
 export default Home;
+

@@ -80,3 +80,4 @@ export function TeamSwitcher({ teams }) {
     </SidebarMenu>
   );
 }
+

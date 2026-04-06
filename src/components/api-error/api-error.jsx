@@ -17,3 +17,4 @@ const ApiErrorPage = ({ message = "Something went wrong.", onRetry }) => {
 };
 
 export default ApiErrorPage;
+

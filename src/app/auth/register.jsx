@@ -236,7 +236,7 @@ const Register = () => {
         {/* Form Column */}
         <div className="flex-1 space-y-8">
           <div className="space-y-2">
-            <h1 className="text-3xl font-bold tracking-tight text-pink-700">Join Agarwal Samaj</h1>
+            <h1 className="text-3xl font-bold tracking-tight text-primary">Join Agarwal Samaj</h1>
             <p className="text-slate-500 text-lg">Complete the form below to register as a member.</p>
           </div>
 
@@ -244,7 +244,7 @@ const Register = () => {
             {/* Personal Information */}
             <section className="space-y-6">
               <div className="flex items-center gap-3 border-b pb-2">
-                <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-700">
+                <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-primary">
                   <FiUser className="w-5 h-5" />
                 </div>
                 <h2 className="text-xl font-semibold">Personal Information</h2>
@@ -364,7 +364,7 @@ const Register = () => {
             {/* Family & Contact */}
             <section className="space-y-6">
               <div className="flex items-center gap-3 border-b pb-2">
-                <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-700">
+                <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-primary">
                   <FiUsers className="w-5 h-5" />
                 </div>
                 <h2 className="text-xl font-semibold">Family & Contact Details</h2>
@@ -372,7 +372,7 @@ const Register = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
                 <div className="space-y-4">
-                  <Label className="text-pink-700 font-bold uppercase tracking-wider">Family</Label>
+                  <Label className="text-primary font-bold uppercase tracking-wider">Family</Label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="f_mfname">Father's Name <span className="text-red-500">*</span></Label>
@@ -390,7 +390,7 @@ const Register = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <Label className="text-pink-700 font-bold uppercase tracking-wider">Residential Details</Label>
+                  <Label className="text-primary font-bold uppercase tracking-wider">Residential Details</Label>
                   <div className="grid grid-cols-1 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="f_mresadd">Residential Address <span className="text-red-500">*</span></Label>
@@ -414,7 +414,7 @@ const Register = () => {
              {/* Introduction & Other */}
              <section className="space-y-6">
               <div className="flex items-center gap-3 border-b pb-2">
-                <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-700">
+                <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-primary">
                   <FiMapPin className="w-5 h-5" />
                 </div>
                 <h2 className="text-xl font-semibold">Introduction & Others</h2>
@@ -469,7 +469,7 @@ const Register = () => {
                     <p className="text-xs text-slate-400">An OTP will be sent to {formData.appli_mno || 'your number'}</p>
                   </div>
                   <Button 
-                    className="bg-pink-700 hover:bg-pink-800 text-white min-w-[200px] h-12"
+                    className="bg-primary hover:bg-primary/90 text-white min-w-[200px] h-12"
                     onClick={handleSendOtp}
                     disabled={isButtonDisabled}
                   >
@@ -483,13 +483,13 @@ const Register = () => {
                     <Input id="otpcode" name="otpcode" placeholder="Enter 6-digit OTP" maxLength={6} value={formData.otpcode} onChange={onInputChange} className="h-12 text-center text-xl tracking-widest font-bold border-pink-200" />
                   </div>
                   <Button 
-                    className="bg-pink-700 hover:bg-pink-800 text-white min-w-[200px] h-12"
+                    className="bg-primary hover:bg-primary/90 text-white min-w-[200px] h-12"
                     onClick={onSubmit}
                     disabled={isButtonDisabled}
                   >
                     {isButtonDisabled ? "Submitting..." : "Submit Registration"}
                   </Button>
-                  <Button variant="outline" className="h-12 border-pink-200 text-pink-700" onClick={() => setOtpSent(false)}>Resend OTP</Button>
+                  <Button variant="outline" className="h-12 border-pink-200 text-primary" onClick={() => setOtpSent(false)}>Resend OTP</Button>
                 </div>
               )}
             </div>
@@ -501,7 +501,7 @@ const Register = () => {
           <Card className="sticky top-24 border-rose-100 shadow-xl overflow-hidden">
             <CardHeader className="bg-rose-50 border-b">
               <CardTitle className="text-lg flex items-center gap-2">
-                <FiFileText className="text-pink-700" />
+                <FiFileText className="text-primary" />
                 Membership Plan
               </CardTitle>
             </CardHeader>
@@ -514,7 +514,7 @@ const Register = () => {
                   <span className="font-bold text-slate-900">Life Member</span>
                   {topping === '5100' && <FiCheck className="text-pink-600" />}
                 </div>
-                <div className="text-2xl font-black text-pink-700">₹5,100</div>
+                <div className="text-2xl font-black text-primary">₹5,100</div>
                 <p className="text-xs text-slate-500 mt-2">Entry: ₹100 + Member: ₹5,000</p>
               </div>
 
@@ -526,7 +526,7 @@ const Register = () => {
                   <span className="font-bold text-slate-900">Patron Member</span>
                   {topping === '11100' && <FiCheck className="text-pink-600" />}
                 </div>
-                <div className="text-2xl font-black text-pink-700">₹11,100</div>
+                <div className="text-2xl font-black text-primary">₹11,100</div>
                 <p className="text-xs text-slate-500 mt-2">Entry: ₹100 + Member: ₹11,000</p>
               </div>
             </CardContent>
@@ -549,3 +549,4 @@ const Register = () => {
 };
 
 export default Register;
+

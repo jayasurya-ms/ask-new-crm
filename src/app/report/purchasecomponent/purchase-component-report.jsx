@@ -300,3 +300,4 @@ const PurchaseComponentReport = () => {
 };
 
 export default PurchaseComponentReport;
+

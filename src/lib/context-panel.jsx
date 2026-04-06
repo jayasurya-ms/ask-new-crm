@@ -3,7 +3,6 @@ import { PANEL_CHECK } from "@/constants/apiConstants";
 import { useApiMutation } from "@/hooks/useApiMutation";
 import { logout } from "@/store/auth/authSlice";
 import { setCompanyDetails, setCompanyImage } from "@/store/auth/companySlice";
-import { setShowUpdateDialog } from "@/store/auth/versionSlice";
 import { persistor } from "@/store/store";
 import appLogout from "@/utils/logout";
 import CryptoJS from "crypto-js";
@@ -54,17 +53,6 @@ const AppProvider = ({ children }) => {
         dispatch(setCompanyDetails(panelRes.company_detils));
         dispatch(setCompanyImage(panelRes.company_image));
       }
-      /* 
-      const serverVersion = panelRes?.version?.version_panel;
-      if (token) {
-        dispatch(
-          setShowUpdateDialog({
-            showUpdateDialog: localVersion !== serverVersion,
-            version: serverVersion,
-          }),
-        );
-      }
-      */
 
       // Env validation not used in Agarwal Samaj CRM
       // const envRes = await trigger({ url: PANEL_CHECK.getEnvStatus });
@@ -115,3 +103,4 @@ const AppProvider = ({ children }) => {
 };
 
 export default AppProvider;
+

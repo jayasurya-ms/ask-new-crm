@@ -35,9 +35,10 @@ const DownloadReport = () => {
     <div className="container mx-auto p-4 md:p-8 space-y-8 mt-6">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 animate-in fade-in slide-in-from-top-4 duration-500">
         <div className="flex items-center gap-4">
-          <div className="p-3 bg-pink-50 rounded-xl">
-            <FiDownload className="w-6 h-6 text-pink-700" />
+          <div className="p-3 bg-primary/10 rounded-xl">
+            <FiDownload className="w-6 h-6 text-primary" />
           </div>
+
           <div>
             <h1 className="text-2xl font-bold text-slate-900">Reports & Downloads</h1>
             <p className="text-sm text-slate-500">Export member data and summaries in CSV format.</p>
@@ -61,7 +62,7 @@ const DownloadReport = () => {
           <CardContent>
             <Button 
               onClick={() => downloadReport(WEB_API.downloadSummaryReport, "summary.csv", setDownloadingSummary)}
-              className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold flex items-center justify-center gap-2"
+              className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-bold flex items-center justify-center gap-2"
               disabled={downloadingSummary}
             >
               {downloadingSummary ? <Loader2 className="h-5 w-5 animate-spin" /> : <FiDownload />}
@@ -70,12 +71,13 @@ const DownloadReport = () => {
           </CardContent>
         </Card>
 
-        <Card className="border-none shadow-md bg-white hover:shadow-lg transition-all border-l-4 border-l-pink-600">
+        <Card className="border-none shadow-md bg-card hover:shadow-lg transition-all border-l-4 border-l-primary">
           <CardHeader>
             <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-pink-50 rounded-lg">
-                    <FiDatabase className="w-5 h-5 text-pink-700" />
+                <div className="p-2 bg-primary/10 rounded-lg">
+                    <FiDatabase className="w-5 h-5 text-primary" />
                 </div>
+
                 <CardTitle className="text-xl">Full Data Export</CardTitle>
             </div>
             <CardDescription>
@@ -85,7 +87,7 @@ const DownloadReport = () => {
           <CardContent>
             <Button 
               onClick={() => downloadReport(WEB_API.downloadFullReport, "full_report.csv", setDownloadingFull)}
-              className="w-full h-12 bg-pink-700 hover:bg-pink-800 text-white rounded-xl font-bold flex items-center justify-center gap-2"
+              className="w-full h-12 bg-primary hover:bg-primary/90 text-white rounded-xl font-bold flex items-center justify-center gap-2"
               disabled={downloadingFull}
             >
               {downloadingFull ? <Loader2 className="h-5 w-5 animate-spin" /> : <FiDownload />}
@@ -99,3 +101,4 @@ const DownloadReport = () => {
 };
 
 export default DownloadReport;
+

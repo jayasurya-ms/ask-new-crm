@@ -88,7 +88,7 @@ const MahilaList = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 animate-in fade-in slide-in-from-top-4 duration-500 border-l-4 border-l-pink-600">
         <div className="flex items-center gap-4">
           <div className="p-3 bg-pink-50 rounded-xl">
-            <FiLayers className="w-6 h-6 text-pink-700" />
+            <FiLayers className="w-6 h-6 text-primary" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Mahila Events</h1>
@@ -100,7 +100,7 @@ const MahilaList = () => {
       <div className="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden">
         {loading ? (
           <div className="flex h-64 items-center justify-center">
-            <Loader2 className="h-8 w-8 animate-spin text-pink-700" />
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
           </div>
         ) : (
           <DataTable
@@ -115,3 +115,4 @@ const MahilaList = () => {
 };
 
 export default MahilaList;
+

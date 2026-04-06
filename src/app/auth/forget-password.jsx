@@ -48,7 +48,7 @@ const ForgetPassword = () => {
 
           <Card className="border-none shadow-xl bg-white/80 backdrop-blur-md">
             <CardHeader className="pb-4">
-              <CardTitle className="text-xl flex items-center gap-2 text-pink-700">
+              <CardTitle className="text-xl flex items-center gap-2 text-primary">
                 <FiLock /> Secure Reset
               </CardTitle>
               <CardDescription>
@@ -78,7 +78,7 @@ const ForgetPassword = () => {
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="w-full h-14 bg-pink-700 hover:bg-pink-800 text-white font-bold text-lg rounded-xl shadow-lg shadow-pink-200 group flex items-center justify-center gap-2"
+                  className="w-full h-14 bg-primary hover:bg-primary/90 text-white font-bold text-lg rounded-xl shadow-lg shadow-pink-200 group flex items-center justify-center gap-2"
                 >
                   {loading ? "Sending link..." : (
                     <>
@@ -118,3 +118,4 @@ const ForgetPassword = () => {
 };
 
 export default ForgetPassword;
+

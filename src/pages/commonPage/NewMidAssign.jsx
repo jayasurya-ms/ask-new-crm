@@ -72,7 +72,7 @@ const NewMidAssign = () => {
   if (loading) {
     return (
       <div className="flex h-[60vh] items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-pink-700" />
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -80,16 +80,17 @@ const NewMidAssign = () => {
   return (
     <div className="container mx-auto p-4 md:p-8 flex justify-center items-center min-h-[calc(100vh-10rem)] mt-6">
       <Card className="w-full max-w-2xl border-none shadow-xl bg-white overflow-hidden animate-in fade-in zoom-in-95 duration-500">
-        <CardHeader className="bg-gradient-to-r from-blue-700 to-indigo-500 text-white p-8">
+        <CardHeader className="bg-primary-gradient text-white p-8">
           <div className="flex justify-between items-start">
             <div>
               <CardTitle className="text-2xl font-bold flex items-center gap-2">
                 <FiKey /> Assign New MID
               </CardTitle>
-              <CardDescription className="text-blue-100">
+              <CardDescription className="text-rose-100">
                 Finalize registration by assigning a unique Membership ID.
               </CardDescription>
             </div>
+
             <div className="bg-white/20 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest text-center">
                 Suggested MID
                 <div className="text-xl">{parseInt(newMidRef?.numid || 0) + 1}</div>
@@ -128,7 +129,7 @@ const NewMidAssign = () => {
                             placeholder="e.g. 1234"
                             value={formData.user_mid}
                             onChange={onInputChange}
-                            className="h-14 rounded-xl border-slate-200 focus:ring-blue-600 text-lg font-black text-center"
+                            className="h-14 rounded-xl border-slate-200 focus:ring-primary text-lg font-black text-center"
                         />
                     </div>
                     <div className="space-y-2">
@@ -140,9 +141,10 @@ const NewMidAssign = () => {
                             placeholder="Ref / Chq / Cash No"
                             value={formData.amount_num}
                             onChange={onInputChange}
-                            className="h-14 rounded-xl border-slate-200 focus:ring-blue-600"
+                            className="h-14 rounded-xl border-slate-200 focus:ring-primary"
                         />
                     </div>
+
                 </div>
             </form>
         </CardContent>
@@ -154,8 +156,9 @@ const NewMidAssign = () => {
                 form="assignMidForm" 
                 type="submit" 
                 disabled={submitting}
-                className="bg-blue-700 hover:bg-blue-800 text-white min-w-[200px] h-14 rounded-2xl font-black text-lg shadow-xl shadow-blue-100 transition-all active:scale-95 flex items-center justify-center gap-2"
+                className="bg-primary hover:bg-primary/90 text-white min-w-[200px] h-14 rounded-2xl font-black text-lg shadow-xl shadow-pink-100 transition-all active:scale-95 flex items-center justify-center gap-2"
             >
+
                 {submitting ? (
                     <>
                         <Loader2 className="h-5 w-5 animate-spin" />
@@ -174,3 +177,4 @@ const NewMidAssign = () => {
 };
 
 export default NewMidAssign;
+

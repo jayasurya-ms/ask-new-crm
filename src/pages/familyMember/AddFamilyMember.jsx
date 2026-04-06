@@ -5,8 +5,20 @@ import { FiTrash2, FiPlus, FiSave, FiArrowLeft, FiUsers } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import apiClient from "@/api/apiClient";
 import { WEB_API } from "@/constants/apiConstants";
 import { Loader2 } from "lucide-react";
@@ -89,45 +101,58 @@ const AddFamilyMember = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 animate-in fade-in slide-in-from-top-4 duration-500">
         <div className="flex items-center gap-4">
           <div className="p-3 bg-pink-50 rounded-xl">
-            <FiPlus className="w-6 h-6 text-pink-700" />
+            <FiPlus className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-slate-900">Add Family Member Details</h1>
-            <p className="text-sm text-slate-500">Add one or multiple family members to your profile.</p>
+            <h1 className="text-2xl font-bold text-slate-900">
+              Add Family Member Details
+            </h1>
+            <p className="text-sm text-slate-500">
+              Add one or multiple family members to your profile.
+            </p>
           </div>
         </div>
         <div className="flex items-center gap-2">
-            <Link to="/family-member">
-                <Button variant="outline" className="flex gap-2 rounded-xl h-11 px-6 transition-all active:scale-95">
-                   <FiArrowLeft /> Back to List
-                </Button>
-            </Link>
+          <Link to="/family-member">
+            <Button
+              variant="outline"
+              className="flex gap-2 rounded-xl h-11 px-6 transition-all active:scale-95"
+            >
+              <FiArrowLeft /> Back to List
+            </Button>
+          </Link>
         </div>
       </div>
 
-      <form onSubmit={onSubmit} className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <form
+        onSubmit={onSubmit}
+        className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700"
+      >
         {users.map((user, index) => (
-          <Card key={index} className="border-none shadow-md overflow-hidden relative group">
+          <Card
+            key={index}
+            className="border-none shadow-md overflow-hidden relative group"
+          >
             {users.length > 1 && (
-                <div className="absolute top-0 right-0 p-2 z-10">
-                    <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        onClick={() => removeUser(index)}
-                        className="text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors"
-                    >
-                        <FiTrash2 className="w-4 h-4" />
-                    </Button>
-                </div>
+              <div className="absolute top-0 right-0 p-2 z-10">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => removeUser(index)}
+                  className="text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors"
+                >
+                  <FiTrash2 className="w-4 h-4" />
+                </Button>
+              </div>
             )}
             <CardHeader className="bg-slate-50/50 border-b py-4">
-              <CardTitle className="text-lg font-bold flex items-center gap-2 text-pink-700">
+              <CardTitle className="text-lg font-bold flex items-center gap-2 text-primary">
                 <FiUsers className="w-4 h-4" /> Member #{index + 1}
               </CardTitle>
             </CardHeader>
-            <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-6 bg-white">
+            <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 pt-6 bg-white">
               <div className="space-y-2 lg:col-span-1">
-                <Label htmlFor={`name-${index}`}>Member Name</Label>
+                <Label htmlFor={`name-${index}`}>Member Name *</Label>
                 <Input
                   id={`name-${index}`}
                   name="family_member_name"
@@ -139,7 +164,7 @@ const AddFamilyMember = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor={`relation-${index}`}>Relation</Label>
+                <Label htmlFor={`relation-${index}`}>Relation *</Label>
                 <Input
                   id={`relation-${index}`}
                   name="family_member_relation"
@@ -151,11 +176,13 @@ const AddFamilyMember = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label>Gender</Label>
+                <Label>Gender *</Label>
                 <Select
                   required
                   onValueChange={(v) => {
-                    const e = { target: { name: "family_member_gender", value: v } };
+                    const e = {
+                      target: { name: "family_member_gender", value: v },
+                    };
                     onChange(e, index);
                   }}
                   value={user.family_member_gender}
@@ -173,7 +200,7 @@ const AddFamilyMember = () => {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor={`dob-${index}`}>DOB</Label>
+                <Label htmlFor={`dob-${index}`}>DOB *</Label>
                 <Input
                   id={`dob-${index}`}
                   name="family_member_dob"
@@ -184,7 +211,7 @@ const AddFamilyMember = () => {
                   className="rounded-xl h-12 focus:ring-pink-600"
                 />
               </div>
-              <div className="space-y-2 lg:col-span-2">
+              <div className="space-y-2">
                 <Label htmlFor={`qualification-${index}`}>Qualification</Label>
                 <Input
                   id={`qualification-${index}`}
@@ -195,7 +222,7 @@ const AddFamilyMember = () => {
                   className="rounded-xl h-12 focus:ring-pink-600"
                 />
               </div>
-              <div className="space-y-2 lg:col-span-2">
+              <div className="space-y-2">
                 <Label htmlFor={`occupation-${index}`}>Occupation</Label>
                 <Input
                   id={`occupation-${index}`}
@@ -214,7 +241,7 @@ const AddFamilyMember = () => {
           <Button
             type="button"
             variant="outline"
-            className="w-full md:w-48 h-12 rounded-xl flex items-center justify-center gap-2 border-slate-200 hover:bg-slate-50 transition-all font-bold text-slate-700"
+            className="w-full md:w-48 h-12 rounded-xl flex items-center justify-center gap-2 border-slate-200 hover:bg-slate-500 transition-all font-bold text-slate-700"
             onClick={addItem}
           >
             <FiPlus /> Add Another Member
@@ -222,7 +249,7 @@ const AddFamilyMember = () => {
           <Button
             type="submit"
             disabled={submitting}
-            className="w-full md:w-64 h-14 bg-pink-700 hover:bg-pink-800 text-white font-black text-xl rounded-2xl shadow-xl shadow-pink-100 transition-all active:scale-95 flex items-center justify-center gap-2"
+            className="w-full md:w-64 h-14 bg-primary hover:bg-primary/90 text-white font-black text-xl rounded-2xl shadow-xl shadow-pink-100 transition-all active:scale-95 flex items-center justify-center gap-2"
           >
             {submitting ? (
               <>

@@ -161,7 +161,7 @@ function AppRoutes() {
             }
           />
           <Route
-            path="/family-add"
+            path="/add-family-member"
             element={
               <Suspense fallback={<LoadingBar />}>
                 <AddFamilyMember />
