@@ -87,6 +87,7 @@ const Login = () => {
             setCredentials({
               token: userInfo.token,
               user: userInfo.user,
+              user_type_id: userInfo.user.user_type_id,
             })
           );
           // Update localStorage as per src copy

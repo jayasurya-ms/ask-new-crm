@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { FiCalendar, FiMapPin, FiClock, FiStar } from "react-icons/fi";
-import { DataTable } from "@/components/ui/data-table";
+import DataTable from "@/components/common/data-table";
 import apiClient from "@/api/apiClient";
 import { WEB_API } from "@/constants/apiConstants";
 import { Loader2 } from "lucide-react";

@@ -25,7 +25,7 @@ if (!secretKey) {
 }
 
 const persistConfig = {
-  key: "root-chair",
+  key: "root-ask",
   storage,
   whitelist: ["auth", "company", "ui"],
   transforms,

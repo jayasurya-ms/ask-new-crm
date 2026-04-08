@@ -39,6 +39,10 @@ const LifeTimeMemberList = () => {
     navigate(`/member-edit/${id}`);
   };
 
+  const handlePrint = (id) => {
+    navigate(`/member-print/${id}`);
+  };
+
   const columns = [
     {
       accessorKey: "slNo",
@@ -85,20 +89,15 @@ const LifeTimeMemberList = () => {
             <FiEdit className="h-4 w-4" />
           </Button>
           {useTypeId === "3" && (
-            <a 
-              href={`https://agrawalsamaj.co/crmapi/public/api/member-print/${row.original.id}`} 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => handlePrint(row.original.id)}
+              className="hover:text-primary hover:bg-pink-50"
+              title="Print"
             >
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hover:text-primary hover:bg-pink-50"
-                title="Print"
-              >
-                <FiPrinter className="h-4 w-4" />
-              </Button>
-            </a>
+              <FiPrinter className="h-4 w-4" />
+            </Button>
           )}
         </div>
       ),
@@ -121,8 +120,12 @@ const LifeTimeMemberList = () => {
             <FiUserCheck className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-slate-900">Life Time Members</h1>
-            <p className="text-sm text-slate-500">List of all active lifetime members in the system.</p>
+            <h1 className="text-2xl font-bold text-slate-900">
+              Life Time Members
+            </h1>
+            <p className="text-sm text-slate-500">
+              List of all active lifetime members in the system.
+            </p>
           </div>
         </div>
       </div>
@@ -139,4 +142,3 @@ const LifeTimeMemberList = () => {
 };
 
 export default LifeTimeMemberList;
-

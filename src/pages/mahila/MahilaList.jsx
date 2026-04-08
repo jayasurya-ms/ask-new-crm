@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { FiCalendar, FiMapPin, FiClock, FiLayers } from "react-icons/fi";
-import { DataTable } from "@/components/ui/data-table";
+import DataTable from "@/components/common/data-table";
 import { Badge } from "@/components/ui/badge";
 import apiClient from "@/api/apiClient";
 import { WEB_API } from "@/constants/apiConstants";

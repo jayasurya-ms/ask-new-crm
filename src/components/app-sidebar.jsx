@@ -61,15 +61,29 @@ const NAVIGATION_CONFIG = {
       url: "/pending-mid",
       icon: Clock,
     },
-    MAHILA: {
-      title: "Mahila Events",
-      url: "/mahila",
-      icon: Users2,
+    DEVELOPER: {
+      title: "Developer",
+      url: "/developer",
+      icon: LayoutDashboard,
     },
-    SAMAJ: {
-      title: "Samaj Events",
-      url: "/samaj",
-      icon: Star,
+    EVENT: {
+      title: "Events",
+      url: "#",
+      icon: Users2,
+      items: [
+        {
+          title: "Samaj",
+          url: "/samaj",
+        },
+        {
+          title: "Mahila",
+          url: "/mahila",
+        },
+        {
+          title: "Developer",
+          url: "/developer",
+        },
+      ],
     },
     DOWNLOAD: {
       title: "Download",
@@ -91,9 +105,7 @@ const USER_ROLE_PERMISSIONS = {
       "LIFE_TIME_MEMBER",
       "PATRON_MEMBER",
       "NEW_REGISTER",
-      "PENDING_MID",
-      "MAHILA",
-      "SAMAJ",
+      "EVENT",
       "DOWNLOAD",
     ],
   },
@@ -105,9 +117,7 @@ const USER_ROLE_PERMISSIONS = {
       "LIFE_TIME_MEMBER",
       "PATRON_MEMBER",
       "NEW_REGISTER",
-      "PENDING_MID",
-      "MAHILA",
-      "SAMAJ",
+      "EVENT",
       "DOWNLOAD",
     ],
   },
@@ -126,10 +136,10 @@ const LIMITED_MASTER_SETTINGS = {
   ],
 };
 
-const useNavigationData = (userType) => {
+const useNavigationData = (userTypeId) => {
   return useMemo(() => {
     const permissions =
-      USER_ROLE_PERMISSIONS[userType] || USER_ROLE_PERMISSIONS[1];
+      USER_ROLE_PERMISSIONS[userTypeId] || USER_ROLE_PERMISSIONS[1];
 
     const buildNavItems = (permissionKeys, config, customItems = {}) => {
       return permissionKeys
@@ -155,7 +165,7 @@ const useNavigationData = (userType) => {
     // );
 
     return { navMain };
-  }, [userType]);
+  }, [userTypeId]);
 };
 
 const Logo = ({ className }) => (
@@ -173,7 +183,8 @@ const TEAMS_CONFIG = [
 export function AppSidebar({ ...props }) {
   const [openItem, setOpenItem] = useState(null);
   const user = useSelector((state) => state.auth.user);
-  const { navMain, navMainReport } = useNavigationData(user?.user_type);
+  const user_type_id = useSelector((state) => state.auth.user_type_id);
+  const { navMain, navMainReport } = useNavigationData(user_type_id);
   const initialData = {
     user: {
       name: user?.name || "User",

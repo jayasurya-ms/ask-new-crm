@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { FiEye, FiEdit, FiClock } from "react-icons/fi";
-import { DataTable } from "@/components/ui/data-table";
+import DataTable from "@/components/common/data-table";
 import { Button } from "@/components/ui/button";
 import apiClient from "@/api/apiClient";
 import { WEB_API } from "@/constants/apiConstants";

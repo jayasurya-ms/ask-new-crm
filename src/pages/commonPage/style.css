@@ -1,0 +1,89 @@
+
+@media print {
+  /* Maintain width in print */
+  .print-container .w-28 {
+    width: 80px; 
+  }
+  
+  .print-container {
+    font-size: 10.7px !important; 
+    line-height: 1.25 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    background: white !important;
+  }
+
+  .print-container h1 {
+    font-size: 0.92rem !important;
+    margin-top: 1.5px !important;
+    margin-bottom: 1.5px !important;
+    padding-bottom: 1.5px !important;
+  }
+
+  .print-container .header-image {
+    max-height: 120px !important; 
+  }
+
+  .print-container .profile-image {
+    width: 96px !important;  /* w-24 equivalent */
+    height: 112px !important; /* h-28 equivalent */
+  }
+
+  .print-container .border-b-2 {
+    border-bottom-width: 1.5px !important;
+    border-color: #e2e8f0 !important;
+  }
+
+  /* Slightly more relaxed paddings */
+  .print-container .p-4 {
+    padding: 9px !important;
+  }
+  
+  .print-container .p-2 {
+    padding: 2.5px !important;
+  }
+
+  .print-container .space-y-3 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 3px !important;
+  }
+  
+  .print-container .mb-4 {
+    margin-bottom: 7px !important;
+  }
+
+  .personal-info-box {
+    min-height: 148px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    line-height: 1.4 !important; /* Slightly taller for this specific box */
+  }
+
+  .print-container hr {
+    margin: 8px 0 !important;
+    border: 0.5px solid black !important;
+  }
+
+  /* Page setup */
+  @page {
+    size: A4;
+    margin: 5mm; /* Standard margins */
+  }
+
+  /* Avoid unwanted page breaks */
+  .print-container > div {
+    break-inside: avoid;
+  }
+}
+
+/* Ensure boxes are visible in print */
+.border-dashed {
+  border-style: dashed !important;
+}
+
+.bg-green-50\/10 {
+  background-color: rgba(240, 253, 244, 0.1) !important;
+}
